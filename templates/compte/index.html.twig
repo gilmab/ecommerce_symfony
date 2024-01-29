@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon compte la bouti{% endblock %}
+
+{% block content %}
+        <h1> Mon compte   </h1>
+        Bienvenue {{ app.user.firstname }} dans votre compte c'est ici que vous pourrez gere vos informations personnel
+
+       <hr> 
+        <a href="{{ path('change_password')}}"> Modifier mon mot de passe  </a> <br />
+        <a href="{{ path('account_address')}}"> Modifier les addresses sur le compte  </a> <br /> 
+       -Ajouter 
+{% endblock %}

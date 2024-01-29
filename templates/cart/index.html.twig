@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon panier {% endblock %}
+
+{% block content %}
+     {% if cart|length > 0 %}
+   
+     <h1> Mon pannier  </h1> 
+     Retrouver l'ensemble des produit
+     <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+       <th scope="col"> Nom </th>
+      <th scope="col"> Quantité </th>
+      <th scope="col"> Prix</th>
+      <th scope="col"> total</th>
+      <th scope="col"> delete</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% set total = null %}
+    {% for product in cart %}
+    <tr>
+      <th>
+         <img src="/uploads/{{product.product.illustration}}" height="75px" alt="{{product.product.name}}" />
+      </th>
+      <td> 
+      {{product.product.name}} <br />
+      <small> {{product.product.subtitle}}</small>
+      </td>
+      <td>
+        <!-- Bouton moins -->
+         <a href="{{path('decrease', {id: product.product.id})}}">
+        <img src="{{ asset('assets/image/moins.png')}}" height="20px"/>
+         </a>
+        <!-- fin du bouton moins -->
+        x{{product.quantity}}
+        <!-- debut du bouton plus-->
+        <a href="{{ path('add_to_cart', {id: product.product.id})}}">
+        <img src="{{ asset('assets/image/plus.png')}}" height="20px"/>
+        </a> 
+        <!-- fin du bouton plus  -->
+        </td>
+      <td> {{ (product.product.price  / 100) | number_format(2,',','.') }}€</td>
+      <td> {{ ((product.product.price * product.quantity) / 100) | number_format(2,',','.') }}€ </td>
+      <td> <a href="{{ path('delete_my_cart', {'id': product.product.id}) }}"> <img src="{{ asset('assets/image/delete.png')}}" height="30px"/> </a> </td>
+    </tr>
+            {% set total = total + (product.product.price * product.quantity) %}
+    {% endfor %}
+  </tbody>
+</table>
+<div class="text-right mb-5">
+ <b> Nombre de produit: {{ cart|length }}  </b> <br />
+ <b> Total de mon panier: {{ (total / 100) | number_format(2,',','.') }}€</b> <br />
+ <a href="" class="btn btn-success btn-block mt-3">Valider mon panier</a>
+</div>
+{% else  %}
+        <hr>
+        <p> Votre panier est vide  </p>
+{% endif %}
+{% endblock %}

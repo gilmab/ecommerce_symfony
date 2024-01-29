@@ -1,3 +1,95 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+Bonjour:
+    path: /
+    # the controller value has the format 'controller_class::method_name'
+    controller: App\Controller\HomeController::index
+
+register:
+     path: /register 
+      # the controller value has the format 'controller_class::method_name'
+     controller: App\Controller\RegisterController::index
+
+login:
+        path: /login 
+      # the controller value has the format 'controller_class::method_name'
+        controller: App\Controller\SecurityController::login
+
+compte:
+        path: /compte
+        controller: App\Controller\CompteController::index
+
+
+logout:
+    path: /logout
+    methods: GET
+
+
+change_password:
+        path: /compte/password
+        controller: App\Controller\AccountPasswordController::index
+
+
+admin:
+        path: /admin
+        controller: App\Controller\Admin\DashboardController::index
+
+products:
+        path: /nos-produits
+        controller: App\Controller\ProductController::index
+
+show_product:
+        path: /product/{slug}
+        controller: App\Controller\ProductController::show
+
+cart:
+        path: /mon-panier
+        controller: App\Controller\CartController::index
+
+add_to_cart:
+        path: /cart/add/{id}
+        controller: App\Controller\CartController::add
+
+remove_my_cart:
+        path: /cart/remove
+        controller: App\Controller\CartController::remove
+
+delete_my_cart:
+        path: /cart/delete/{id}
+        controller: App\Controller\CartController::delete
+
+decrease:
+        path: /cart/decrease/{id}
+        controller: App\Controller\CartController::decrease
+
+account_address:
+        path: /compte/address
+        controller: App\Controller\AccountAddressController::index
+
+
+ajout:
+        path: /compte/create
+        controller: App\Controller\AccountAddressController::create
+
+update_address:
+        path: /compte/update/{id}
+        controller: App\Controller\AccountAddressController::update
+
+
+delete_address:
+        path: /compte/delete/{id}
+        controller: App\Controller\AccountAddressController::delete
+
+order:
+        path: /commande
+        controller: App\Controller\OrderController::index
+
+
+
+
+
+
+
+
